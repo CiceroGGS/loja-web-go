@@ -31,7 +31,7 @@ func Insert(w http.ResponseWriter, r *http.Request) {
 		preco := r.FormValue("preco")
 		quantidade := r.FormValue("quantidade")
 
-		precoParaFloat, err := strconv.ParseFloat(preco, float64)
+		precoParaFloat, err := strconv.ParseFloat(preco, 64)
 		if err != nil {
 			log.Println("Erro na conversao do preco", err)
 		}
