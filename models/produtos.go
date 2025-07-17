@@ -5,11 +5,10 @@ import (
 )
 
 type Produto struct {
-	Id         int
-	Nome       string
-	Descricao  string
-	Preco      float64
-	Quantidade int
+	Id              int
+	Nome, Descricao string
+	Preco           float64
+	Quantidade      int
 }
 
 func BuscarTodosProdutos() []Produto {
@@ -43,4 +42,8 @@ func BuscarTodosProdutos() []Produto {
 	}
 	defer db.Close()
 	return produtos
+}
+
+func CriarNovoProduto(nome string, descricao string, preco float64, quamtidade int) {
+
 }
