@@ -90,6 +90,7 @@ func EditarProduto(id string) Produto {
 		if err != nil {
 			panic(err.Error())
 		}
+		produtoAtualizado.Id = id
 		produtoAtualizado.Nome = nome
 		produtoAtualizado.Descricao = descricao
 		produtoAtualizado.Preco = preco
@@ -97,4 +98,15 @@ func EditarProduto(id string) Produto {
 	}
 	defer db.Close()
 	return produtoAtualizado
+}
+
+func AtualizarProduto(id int, nome, descricao string, preco float64, quantidade int) {
+	db := db.ConectarComDB()
+
+	AtualizaProduto, err := db.Prepare("UPDATE produtos SET nome=$1, descricao=$2, preco=$3, quantidade=$4 WHERE id=$5")
+	if err != nil {
+		panic(err.Error())
+	}
+	AtualizaProduto.Exec(nome, descricao, preco, quantidade, id)
+	defer db.Close()
 }
